@@ -39,16 +39,7 @@
 
 
 <h2 id="abstract">Abstract</h2>
-<p>Conversational text-to-speech (TTS) aims to synthesize speech with proper prosody of reply based on the historical
-conversation. However, it is still a challenge to comprehensively model the conversation, and a majority of
-conversational TTS systems only focus on extracting global information and omit local prosody features, which contain
-important fine-grained information like keywords and emphasis. Moreover, it is insufficient to only consider the textual
-features, and acoustic features also contain various prosody information. Hence, we propose M<sup>2</sup>-CTTS, an end-to-end
-multi-scale multi-modal conversational text-to-speech system, aiming to comprehensively utilize historical conversation
-and enhance prosodic expression. More specifically, we design a textual context module and an acoustic context module
-with both coarse-grained and fine-grained modeling. Experimental results demonstrate that our model mixed with
-fine-grained context information and additionally considering acoustic features achieves better prosody performance and
-naturalness in CMOS tests.</p>
+<p>Conversational speech synthesis (CSS) adopts historical dialogue as additional information with the aim of generating speech that has dialogue-appropriate prosody. While previous methods have already delved into enhancing context comprehension, context representation still lacks effective representation capabilities and context-sensitive discriminability. In this paper, we introduce a contrastive learning-based CSS framework, CONCSS. Within this framework, we define an innovative pretext task specific to CSS that enables the model to perform self-supervised learning on unlabeled conversational datasets to boost the model's context understanding. Additionally, we introduce a sampling strategy for negative sample augmentation to enhance context vectors' discriminability. This is the first attempt to integrate contrastive learning into CSS. We conducted ablation studies on different contrastive learning strategies and ran comprehensive experiments in comparison with prior CSS systems. Results demonstrate that the synthesized speech from our proposed method exhibits more contextually appropriate and sensitive prosody.</p>
 
 <h2><p class="toc_title">Contents</p></h2>
 <div id="toc_container">
