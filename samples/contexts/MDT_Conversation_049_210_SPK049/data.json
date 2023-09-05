@@ -1,0 +1,47 @@
+{
+    "current": {
+        "id": "MDT_Conversation_049_210_SPK049",
+        "text": "然后他回来之后，然后从他一开始回来，我弟弟就开始哭，一直哭到十二点多，真的我们都没有任何办法了",
+        "speaker": "SPK049",
+        "turn": 210
+    },
+    "history": {
+        "id": [
+            "MDT_Conversation_049_200_SPK049",
+            "MDT_Conversation_049_201_SPK050",
+            "MDT_Conversation_049_202_SPK049",
+            "MDT_Conversation_049_203_SPK050",
+            "MDT_Conversation_049_204_SPK049",
+            "MDT_Conversation_049_205_SPK049",
+            "MDT_Conversation_049_206_SPK050",
+            "MDT_Conversation_049_207_SPK049",
+            "MDT_Conversation_049_208_SPK049",
+            "MDT_Conversation_049_209_SPK050"
+        ],
+        "text": [
+            "这么神奇",
+            "对",
+            "我靠你这你其实你说这个，我想起来一个就是，另外一个我弟弟小时候的事情",
+            "嗯",
+            "我弟弟很小因为我弟弟，我比我弟弟大蛮多的嘛，然后他小时候事情我基本上都记得",
+            "有一天晚上我爸就是，因为冬天黑的特别早嘛，然后他自己在外面打牌",
+            "嗯",
+            "回来的又特别晚，当时都十点多了，他才回来，平常都九点过一点儿就回来嘛",
+            "那天晚上他回来特别晚，农村的十点多已经特别特别黑了，而且我们那儿当时没有路灯特别黑",
+            "嗯"
+        ],
+        "speaker": [
+            "SPK049",
+            "SPK050",
+            "SPK049",
+            "SPK050",
+            "SPK049",
+            "SPK049",
+            "SPK050",
+            "SPK049",
+            "SPK049",
+            "SPK050"
+        ],
+        "history_len": 10
+    }
+}

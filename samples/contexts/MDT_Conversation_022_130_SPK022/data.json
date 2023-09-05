@@ -1,0 +1,47 @@
+{
+    "current": {
+        "id": "MDT_Conversation_022_130_SPK022",
+        "text": "然后到了冬天的话北方冷了，然后师傅们就回南方，南方相对说，说暖和一点，好多师傅都是这样的",
+        "speaker": "SPK022",
+        "turn": 130
+    },
+    "history": {
+        "id": [
+            "MDT_Conversation_022_120_SPK022",
+            "MDT_Conversation_022_121_SPK021",
+            "MDT_Conversation_022_122_SPK022",
+            "MDT_Conversation_022_123_SPK022",
+            "MDT_Conversation_022_124_SPK022",
+            "MDT_Conversation_022_125_SPK021",
+            "MDT_Conversation_022_126_SPK021",
+            "MDT_Conversation_022_127_SPK022",
+            "MDT_Conversation_022_128_SPK022",
+            "MDT_Conversation_022_129_SPK021"
+        ],
+        "text": [
+            "嗯太阳刚出来",
+            "我看你发那张那个就是日出的那张照片挺好的",
+            "对对对",
+            "周围山它那个，寺庙不就建在建在山下边儿，它后边儿那个那个藏经阁我们去了藏经阁里边儿已经",
+            "好久都没人打扫了，里边藏的经书也不是特别多，呃松鼠都筑了松鼠都筑了巢了，在里边儿你都能听到松鼠叫",
+            "不是他们那个僧侣不扫",
+            "那寺庙的那个僧人不去打扫吗",
+            "他们僧人特别少，我们在的时候好多师傅都是",
+            "南方的，他们就是南方吧然后就是到了夏天比较超热嘛！就来北方寺庙了",
+            "哦"
+        ],
+        "speaker": [
+            "SPK022",
+            "SPK021",
+            "SPK022",
+            "SPK022",
+            "SPK022",
+            "SPK021",
+            "SPK021",
+            "SPK022",
+            "SPK022",
+            "SPK021"
+        ],
+        "history_len": 10
+    }
+}

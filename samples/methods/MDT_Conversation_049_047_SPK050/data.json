@@ -1,0 +1,47 @@
+{
+    "current": {
+        "id": "MDT_Conversation_049_047_SPK050",
+        "text": "那几个男孩在前面走，她在后面走，然后走着走着，她就不知道为什么，她就不想走了，她就坐那儿",
+        "speaker": "SPK050",
+        "turn": 47
+    },
+    "history": {
+        "id": [
+            "MDT_Conversation_049_037_SPK050",
+            "MDT_Conversation_049_038_SPK050",
+            "MDT_Conversation_049_039_SPK049",
+            "MDT_Conversation_049_040_SPK050",
+            "MDT_Conversation_049_041_SPK049",
+            "MDT_Conversation_049_042_SPK050",
+            "MDT_Conversation_049_043_SPK049",
+            "MDT_Conversation_049_044_SPK050",
+            "MDT_Conversation_049_045_SPK049",
+            "MDT_Conversation_049_046_SPK050"
+        ],
+        "text": [
+            "对",
+            "然后她不是好了嘛，后面给好了",
+            "嗯",
+            "好了以后就她妈就问她，你一个人去那干嘛去了，她说",
+            "嗯",
+            "嗯本来是跟几个男孩儿一块儿去的，玩嘛",
+            "嗯",
+            "然后到了后面天黑，马上就黑了，因为他们走的挺远的，然后就往回走嘛",
+            "嗯",
+            "往回走的时候，她就说"
+        ],
+        "speaker": [
+            "SPK050",
+            "SPK050",
+            "SPK049",
+            "SPK050",
+            "SPK049",
+            "SPK050",
+            "SPK049",
+            "SPK050",
+            "SPK049",
+            "SPK050"
+        ],
+        "history_len": 10
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "current": {
+        "id": "MDT_Conversation_034_183_SPK033",
+        "text": "对对对，所以它叫老忠实，它就真的，它非常有规律，然后大家就去那边等，结果当时那一天就有两只牦牛",
+        "speaker": "SPK033",
+        "turn": 183
+    },
+    "history": {
+        "id": [
+            "MDT_Conversation_034_173_SPK034",
+            "MDT_Conversation_034_174_SPK033",
+            "MDT_Conversation_034_175_SPK034",
+            "MDT_Conversation_034_176_SPK033",
+            "MDT_Conversation_034_177_SPK033",
+            "MDT_Conversation_034_178_SPK034",
+            "MDT_Conversation_034_179_SPK034",
+            "MDT_Conversation_034_180_SPK033",
+            "MDT_Conversation_034_181_SPK034",
+            "MDT_Conversation_034_182_SPK034"
+        ],
+        "text": [
+            "嗯",
+            "喷起来，然后就是它会，它叫个老老忠实",
+            "嗯",
+            "老忠实然后就什么，它会在同一天的同同一同同样的几个时间",
+            "固定在这个时间喷发，然后大家就会提前在那个时间然后去那等",
+            "嗯",
+            "那是人设置的是",
+            "不是不是就是自然的，对对对所以它",
+            "自然还要",
+            "按规律的喷发"
+        ],
+        "speaker": [
+            "SPK034",
+            "SPK033",
+            "SPK034",
+            "SPK033",
+            "SPK033",
+            "SPK034",
+            "SPK034",
+            "SPK033",
+            "SPK034",
+            "SPK034"
+        ],
+        "history_len": 10
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "current": {
+        "id": "MDT_Conversation_035_031_SPK036",
+        "text": "要到楼下去接热水，那时候就是条件儿不是很好嘛，毕竟也是二十多年前那时候他们搞对象的时候",
+        "speaker": "SPK036",
+        "turn": 31
+    },
+    "history": {
+        "id": [
+            "MDT_Conversation_035_021_SPK035",
+            "MDT_Conversation_035_022_SPK036",
+            "MDT_Conversation_035_023_SPK035",
+            "MDT_Conversation_035_024_SPK036",
+            "MDT_Conversation_035_025_SPK035",
+            "MDT_Conversation_035_026_SPK036",
+            "MDT_Conversation_035_027_SPK035",
+            "MDT_Conversation_035_028_SPK036",
+            "MDT_Conversation_035_029_SPK036",
+            "MDT_Conversation_035_030_SPK035"
+        ],
+        "text": [
+            "嗯",
+            "那时候的爱情好像特别简单，就是我妈跟我说以前我爸怎么追他的呢",
+            "嗯",
+            "我爸就是就是，那时候他们不是不是在北京打工嘛，然后在打工的时候就是他们住一个小阁楼上",
+            "嗯",
+            "就那个阁楼上当时就是，冬天的时候会没有热水，然后就是只有凉水嘛，如果要是",
+            "嗯",
+            "接水的话需要从那个楼上跑下来，然后大概十几楼的样子",
+            "然后我爸就从楼梯上一一一楼一楼的然后就爬下来，为了给我妈接点热水，因为",
+            "嗯"
+        ],
+        "speaker": [
+            "SPK035",
+            "SPK036",
+            "SPK035",
+            "SPK036",
+            "SPK035",
+            "SPK036",
+            "SPK035",
+            "SPK036",
+            "SPK036",
+            "SPK035"
+        ],
+        "history_len": 10
+    }
+}

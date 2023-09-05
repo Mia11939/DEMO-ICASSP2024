@@ -1,0 +1,47 @@
+{
+    "current": {
+        "id": "MDT_Conversation_049_013_SPK050",
+        "text": "她妈不是就骂她嘛，你知道吧，就那天晚上的时候，她一直不说话，她妈开了灯以后她在墙角坐坐着也不说话",
+        "speaker": "SPK050",
+        "turn": 13
+    },
+    "history": {
+        "id": [
+            "MDT_Conversation_049_003_SPK049",
+            "MDT_Conversation_049_004_SPK050",
+            "MDT_Conversation_049_005_SPK049",
+            "MDT_Conversation_049_006_SPK050",
+            "MDT_Conversation_049_007_SPK050",
+            "MDT_Conversation_049_008_SPK049",
+            "MDT_Conversation_049_009_SPK050",
+            "MDT_Conversation_049_010_SPK049",
+            "MDT_Conversation_049_011_SPK049",
+            "MDT_Conversation_049_012_SPK050"
+        ],
+        "text": [
+            "嗯",
+            "当时跟她去那个庄稼地里面玩的是几个男孩子",
+            "嗯",
+            "那会儿都很小嘛",
+            "一二年级那会儿，都男孩子但是玩到天晚了以后，就是这个事情，是最后她好了以后",
+            "大家都走了吧",
+            "她妈问她的，你为什么一个人跑跑那边儿去玩去了",
+            "嗯",
+            "嗯",
+            "这个后面再跟你讲啊，就是"
+        ],
+        "speaker": [
+            "SPK049",
+            "SPK050",
+            "SPK049",
+            "SPK050",
+            "SPK050",
+            "SPK049",
+            "SPK050",
+            "SPK049",
+            "SPK049",
+            "SPK050"
+        ],
+        "history_len": 10
+    }
+}

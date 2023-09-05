@@ -1,0 +1,530 @@
+
+<!DOCTYPE html>
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>CONCSS: Contrastive-based Context Comprehension for Dialogue-appropriate Prosody in Conversational Speech Synthesis</title>
+<meta name="generator" content="Jekyll v3.9.0">
+<meta property="og:title" content="M2-CTTS: End-to-End Multi-scale Multi-modal Conversational Text-to-Speech Synthesis">
+<meta property="og:locale" content="en_US">
+<link rel="canonical" href="https://happylittlecat2333.github.io/icassp2023/">
+<meta property="og:url" content="https://syang1993.github.io/icassp2023/">
+<meta name="twitter:card" content="summary">
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body data-new-gr-c-s-check-loaded="14.1023.0" data-gr-ext-installed="">
+    <section class="page-header">
+    <!-- <h1 class="project-name"></h1>
+    <h2 class="project-tagline"></h2> -->
+      
+      
+    </section>
+
+    <section class="main-content">
+      <h1 id=""><center> CONCSS: Contrastive-based Context Comprehension for Dialogue-appropriate Prosody in Conversational Speech Synthesis</center></h1>
+      <!-- <h1 id=""><center> Evaluation </center></h1> -->
+      
+
+<center> Yayue Deng<sup>1</sup>, Jinlong Xue<sup>1</sup>, Yukang Jia<sup>3</sup>, Qifei Li<sup>1</sup>, Yichen Han<sup>1</sup>, Fengping Wang<sup>1</sup>, Yingming Gao<sup>1</sup>, Dengfeng Ke<sup>2</sup>, Ya Li<sup>1</sup>,</center>
+<br>
+<center> <sup>1</sup> Beijing University of Posts and Telecommunications, Beijing, China</center>
+<center> <sup>2</sup> Beijing Language and Culture University, Beijing, China</center>
+<center> <sup>3</sup> Perfect World Co.,Ltd, Beijing, China</center>
+
+
+
+<h2 id="abstract">Abstract</h2>
+<p>Conversational text-to-speech (TTS) aims to synthesize speech with proper prosody of reply based on the historical
+conversation. However, it is still a challenge to comprehensively model the conversation, and a majority of
+conversational TTS systems only focus on extracting global information and omit local prosody features, which contain
+important fine-grained information like keywords and emphasis. Moreover, it is insufficient to only consider the textual
+features, and acoustic features also contain various prosody information. Hence, we propose M<sup>2</sup>-CTTS, an end-to-end
+multi-scale multi-modal conversational text-to-speech system, aiming to comprehensively utilize historical conversation
+and enhance prosodic expression. More specifically, we design a textual context module and an acoustic context module
+with both coarse-grained and fine-grained modeling. Experimental results demonstrate that our model mixed with
+fine-grained context information and additionally considering acoustic features achieves better prosody performance and
+naturalness in CMOS tests.</p>
+
+<h2><p class="toc_title">Contents</p></h2>
+<div id="toc_container">
+<ul>
+  <li><a href="#1">Model Architecture</a></li>
+  <li><a href="#2">Compared Models</a></li>
+  <li><a href="#3">Comparison of Dialogue-Appropriate Prosody</a></li>
+  <li><a href="#4">Comparison of Context-sensitive Distinctiveness</a></li>
+
+</ul>
+</div>
+
+<a name="1"><h2>Model Architecture</h2></a>
+<div>
+  <br />
+  <p style="text-align: center">
+    <img src="./framework.png" width="1200" height="600"/>
+  </p>
+  <p>
+  <figcaption style="text-align:center;">
+    </font>
+    <font size=3>
+        The proposed framework, as depicted in Fig.1, introduces several key enhancements to the VITS speech synthesis model. 
+        It employs an innovative pretext task to generate context-dependent pseudo-labels, guiding the model to achieve attributes like context-sensitive discriminability and interpretability. 
+        Additionally, the framework integrates an acoustic and textual context encoder. 
+        To further enhance its capabilities, the model adopts triplet loss combined with a negative sample augmentation strategy, which bolsters its context awareness and results in speech output that has context-sensitive distinctiveness and appropriate prosody. 
+        Lastly, the framework incorporates an autoregressive prosodic modeling (APM) module, which is powered by a pre-trained prosodic language model.
+      <!-- Fig.1 Overview of our proposed CONCSS model. M<sup>2</sup>-CTTS is based on FastSpeech2 and HiFi-GAN. 
+      We design a Textual Context Module (TCM) and an Acoustic Context Module (ACM) for modeling. 
+      We develop a Text Utterance-Level Module (TUM) and a Text Phoneme-Level Module (TPM) in TCM and develop a Wave Utterance-Level Module (WUM) and a Wave Phoneme-Level Module (WPM) in ACM. 
+      Moreover, we use Conditional Decoder and Prosody Predictor Module (PPM) to enhance the expressiveness of the generated speech. -->
+    </font>
+  </figcaption><br><br>
+  </p>
+</div>
+
+
+
+<a name="2"><h2>Compared Models</h2></a>
+<p>
+<!-- M0: reconstructed from mel spectrogram. <br>
+GRU-based: proposed by Guo et al. to achieve GRU-based context understanding.<br>
+M2CTTS: proposed by Xue et al for multi-modal context understanding (M2CTTS-M6).<br>
+CONCSS-w/o-APM: The proposed framework without APM module. With regard to various contrastive learning strategies, we ran ablation studies as follows:<br>
+S1: adopts basic contrastive loss proposed by Chopra et al. Besides, it does not employ the sampling strategy.<br>
+S2: utilizes triplet loss without using the sampling strategy.<br>
+S3: employs triplet loss and negative sampling strategy, as illustrated in a certain section.<br>
+CONCSS: The proposed CSS framework, denoted as S4.<br> -->
+<ul>
+    <li><strong>GRU-based</strong>: proposed by Guo et al. to achieve GRU-based context understanding.</li>
+    <li><strong>M2CTTS</strong>: proposed by Xue et al for multi-modal context understanding (M2CTTS-M6).</li>
+    <li><strong>CONCSS-w/o-APM</strong>: The proposed framework without APM module. With regard to various contrastive learning strategies, we ran ablation studies as follows:
+      <ul>
+        <li><strong>S1</strong>: adopts basic contrastive loss proposed by Chopra et al. Besides, it does not employ the sampling strategy.</li>
+        <li><strong>S2</strong>: utilizes triplet loss without using the sampling strategy.</li>
+        <li><strong>S3</strong>: employs triplet loss and negative sampling strategy, as illustrated in a certain section.</li>
+      </ul>
+    </li>
+    <li><strong>CONCSS</strong>: The proposed CSS framework, denoted as <strong>S4</strong>.</li>
+  </ul>
+  
+</p>
+<br>
+<br>
+<br>
+<br>
+<a name="3"><h2>Comparison of Dialogue-Appropriate Prosody</h2></a>
+<h3>Sample 1</h3>
+        <h4>history</h4>
+        <p><audio src="samples/methods/MDT_Conversation_005_039_SPK006/history/history.wav" controls="" preload=""></audio></p>
+        <p>SPK005: 嗯<br>SPK006: 然后然后就没有办法，然后就把它们那两只猫拎出去宠物店洗了<br>SPK006: 然后听说还挠到了人家洗澡的人<br>SPK005: 嗯<br>SPK006: 很凶<br>SPK006: 然后就一直这样，持续了有三四天吧！白天趴在床底下，晚上关了灯以后就开始出来跳<br>SPK005: 嗯<br>SPK006: 我真的超级无语那两只猫<br>SPK006: 然后后来那两只猫<br>SPK006: 哦有一天我们出去玩<br><b>SPK006: 晚然后晚上回来了，回来之后都崩溃了，它们把屋子里所有，它们能动的东西全部都推到了地上</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <!-- <th style="text-align: center"><strong>M0</strong></th> -->
+                    <!-- <th style="text-align: center"><strong>M1</strong></th> -->
+                    <th style="text-align: center"><strong>GRU-based</strong></th>
+                    <th style="text-align: center"><strong>M2CTTS</strong></th>
+                    <th style="text-align: center"><strong>S1</strong></th>
+                    <th style="text-align: center"><strong>S2</strong></th>
+                    <th style="text-align: center"><strong>S3</strong></th>
+                    <th style="text-align: center"><strong>S4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <!-- <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_005_039_SPK006/current/groundtrue.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_005_039_SPK006/current/vits.wav" 
+                            controls="" preload=""></audio></td> -->
+                    <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_005_039_SPK006/current/guo.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_005_039_SPK006/current/m2ctts.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_005_039_SPK006/current/guo-mul-neg-v1.wav"
+                        controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_005_039_SPK006/current/guo-mul-neg-v2.wav"
+                        controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_005_039_SPK006/current/guo-mul-neg-v3.wav"
+                        controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_005_039_SPK006/current/guo-mul-re-neg.wav"
+                        controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        <h3>Sample 2</h3>
+        <h4>history</h4>
+        <p><audio src="samples/methods/MDT_Conversation_049_047_SPK050/history/history.wav" controls="" preload=""></audio></p>
+        <p>SPK050: 对<br>SPK050: 然后她不是好了嘛，后面给好了<br>SPK049: 嗯<br>SPK050: 好了以后就她妈就问她，你一个人去那干嘛去了，她说<br>SPK049: 嗯<br>SPK050: 嗯本来是跟几个男孩儿一块儿去的，玩嘛<br>SPK049: 嗯<br>SPK050: 然后到了后面天黑，马上就黑了，因为他们走的挺远的，然后就往回走嘛<br>SPK049: 嗯<br>SPK050: 往回走的时候，她就说<br><b>SPK050: 那几个男孩在前面走，她在后面走，然后走着走着，她就不知道为什么，她就不想走了，她就坐那儿</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>GRU-based</strong></th>
+                    <th style="text-align: center"><strong>M2CTTS</strong></th>
+                    <th style="text-align: center"><strong>S1</strong></th>
+                    <th style="text-align: center"><strong>S2</strong></th>
+                    <th style="text-align: center"><strong>S3</strong></th>
+                    <th style="text-align: center"><strong>S4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <!-- <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_049_047_SPK050/current/groundtrue.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_049_047_SPK050/current/vits.wav" 
+                            controls="" preload=""></audio></td> -->
+                    <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_049_047_SPK050/current/guo.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_049_047_SPK050/current/m2ctts.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_049_047_SPK050/current/guo-mul-neg-v1.wav"
+                        controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_049_047_SPK050/current/guo-mul-neg-v2.wav"
+                        controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_049_047_SPK050/current/guo-mul-neg-v3.wav"
+                        controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_049_047_SPK050/current/guo-mul-re-neg.wav"
+                        controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        <h3>Sample 3</h3>
+        <h4>history</h4>
+        <p><audio src="samples/methods/MDT_Conversation_034_183_SPK033/history/history.wav" controls="" preload=""></audio></p>
+        <p>SPK034: 嗯<br>SPK033: 喷起来，然后就是它会，它叫个老老忠实<br>SPK034: 嗯<br>SPK033: 老忠实然后就什么，它会在同一天的同同一同同样的几个时间<br>SPK033: 固定在这个时间喷发，然后大家就会提前在那个时间然后去那等<br>SPK034: 嗯<br>SPK034: 那是人设置的是<br>SPK033: 不是不是就是自然的，对对对所以它<br>SPK034: 自然还要<br>SPK034: 按规律的喷发<br><b>SPK033: 对对对，所以它叫老忠实，它就真的，它非常有规律，然后大家就去那边等，结果当时那一天就有两只牦牛</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>GRU-based</strong></th>
+                    <th style="text-align: center"><strong>M2CTTS</strong></th>
+                    <th style="text-align: center"><strong>S1</strong></th>
+                    <th style="text-align: center"><strong>S2</strong></th>
+                    <th style="text-align: center"><strong>S3</strong></th>
+                    <th style="text-align: center"><strong>S4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <!-- <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_034_183_SPK033/current/groundtrue.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_034_183_SPK033/current/vits.wav" 
+                            controls="" preload=""></audio></td> -->
+                    <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_034_183_SPK033/current/guo.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_034_183_SPK033/current/m2ctts.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_034_183_SPK033/current/guo-mul-neg-v1.wav"
+                        controls="" preload=""></audio></td>
+
+
+                        <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_034_183_SPK033/current/guo-mul-neg-v2.wav"
+                        controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_034_183_SPK033/current/guo-mul-neg-v3.wav"
+                        controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_034_183_SPK033/current/guo-mul-re-neg.wav"
+                        controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        <h3>Sample 4</h3>
+        <h4>history</h4>
+        <p><audio src="samples/methods/MDT_Conversation_049_013_SPK050/history/history.wav" controls="" preload=""></audio></p>
+        <p>SPK049: 嗯<br>SPK050: 当时跟她去那个庄稼地里面玩的是几个男孩子<br>SPK049: 嗯<br>SPK050: 那会儿都很小嘛<br>SPK050: 一二年级那会儿，都男孩子但是玩到天晚了以后，就是这个事情，是最后她好了以后<br>SPK049: 大家都走了吧<br>SPK050: 她妈问她的，你为什么一个人跑跑那边儿去玩去了<br>SPK049: 嗯<br>SPK049: 嗯<br>SPK050: 这个后面再跟你讲啊，就是<br><b>SPK050: 她妈不是就骂她嘛，你知道吧，就那天晚上的时候，她一直不说话，她妈开了灯以后她在墙角坐坐着也不说话</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>GRU-based</strong></th>
+                    <th style="text-align: center"><strong>M2CTTS</strong></th>
+                    <th style="text-align: center"><strong>S1</strong></th>
+                    <th style="text-align: center"><strong>S2</strong></th>
+                    <th style="text-align: center"><strong>S3</strong></th>
+                    <th style="text-align: center"><strong>S4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <!-- <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_049_013_SPK050/current/groundtrue.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_049_013_SPK050/current/vits.wav" 
+                            controls="" preload=""></audio></td> -->
+                    <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_049_013_SPK050/current/guo.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_049_013_SPK050/current/m2ctts.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_049_013_SPK050/current/guo-mul-neg-v1.wav"
+                        controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_049_013_SPK050/current/guo-mul-neg-v2.wav"
+                        controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_049_013_SPK050/current/guo-mul-neg-v3.wav"
+                        controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_049_013_SPK050/current/guo-mul-re-neg.wav"
+                        controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        <h3>Sample 5</h3>
+        <h4>history</h4>
+        <p><audio src="samples/methods/MDT_Conversation_037_016_SPK038/history/history.wav" controls="" preload=""></audio></p>
+        <p>SPK037: 然后的话里面会有一个主持人，然后会<br>SPK037: 嗯基本上的话每期都会有几个人，带几个人出去吃，大部分录制节目都是在国外<br>SPK037: 然后做一个一些美食的品尝，然后最后做评价，做成一个<br>SPK037: 每一期的话做成一个二三十分钟的一个短视频，然后在那个爱奇艺上面可以看，我坚持了大概两三年<br>SPK038: 是不是有点儿类似于中餐中餐厅那种<br>SPK037: 嗯那种是综艺秀，那种是明星他们不是明星，但是他们这个节目做了五年<br>SPK037: 每次他们都会去那些很大的国家然后各个地方的美食然后评鉴做一个评论<br>SPK037: 对推荐给大家一些美食的那种<br>SPK038: 我记得谢霆锋当时也做了一个美食的那个节目<br>SPK038: 也是去各个国家，我当时还看他们去了印度，然后去做那个<br><b>SPK038: 吃他那个咖喱炒饭，还有他们那儿还有一个什么炒饭就是特别出名，就是街边的那种，好像是各种东西炒在一起</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>GRU-based</strong></th>
+                    <th style="text-align: center"><strong>M2CTTS</strong></th>
+                    <th style="text-align: center"><strong>S1</strong></th>
+                    <th style="text-align: center"><strong>S2</strong></th>
+                    <th style="text-align: center"><strong>S3</strong></th>
+                    <th style="text-align: center"><strong>S4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <!-- <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_037_016_SPK038/current/groundtrue.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_037_016_SPK038/current/vits.wav" 
+                            controls="" preload=""></audio></td> -->
+                    <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_037_016_SPK038/current/guo.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_037_016_SPK038/current/m2ctts.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_037_016_SPK038/current/guo-mul-neg-v1.wav"
+                        controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_037_016_SPK038/current/guo-mul-neg-v2.wav"
+                        controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_037_016_SPK038/current/guo-mul-neg-v3.wav"
+                        controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/methods/MDT_Conversation_037_016_SPK038/current/guo-mul-re-neg.wav"
+                        controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+<a name="4"><h2>Comparison of Context-sensitive Distinctiveness</h2></a>
+
+<h3>Sample 1</h3>
+        <h4>history</h4>
+        <p><audio src="samples/contexts/MDT_Conversation_022_130_SPK022/history/history.wav" controls="" preload=""></audio></p>
+        <p>SPK022: 嗯太阳刚出来<br>SPK021: 我看你发那张那个就是日出的那张照片挺好的<br>SPK022: 对对对<br>SPK022: 周围山它那个，寺庙不就建在建在山下边儿，它后边儿那个那个藏经阁我们去了藏经阁里边儿已经<br>SPK022: 好久都没人打扫了，里边藏的经书也不是特别多，呃松鼠都筑了松鼠都筑了巢了，在里边儿你都能听到松鼠叫<br>SPK021: 不是他们那个僧侣不扫<br>SPK021: 那寺庙的那个僧人不去打扫吗<br>SPK022: 他们僧人特别少，我们在的时候好多师傅都是<br>SPK022: 南方的，他们就是南方吧然后就是到了夏天比较超热嘛！就来北方寺庙了<br>SPK021: 哦<br><b>SPK022: 然后到了冬天的话北方冷了，然后师傅们就回南方，南方相对说，说暖和一点，好多师傅都是这样的</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>Context</strong></th>
+                    <th style="text-align: center"><strong>GRU-based</strong></th>
+                    <th style="text-align: center"><strong>M2CTTS</strong></th>
+                    <th style="text-align: center"><strong>S1</strong></th>
+                    <th style="text-align: center"><strong>S2</strong></th>
+                    <th style="text-align: center"><strong>S3</strong></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                        <td>Real</td>
+                    <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_022_130_SPK022/current/correct/guo.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_022_130_SPK022/current/correct/m2ctts.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_022_130_SPK022/current/correct/guo-mul-neg-v1.wav"
+                            controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_022_130_SPK022/current/correct/guo-mul-neg-v2.wav"
+                            controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_022_130_SPK022/current/correct/guo-mul-neg-v3.wav"
+                            controls="" preload=""></audio></td>
+                </tr>
+                
+
+                <tr>
+                        <td>Fake</td>
+                    <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_022_130_SPK022/current/error/guo.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_022_130_SPK022/current/error/m2ctts.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_022_130_SPK022/current/error/guo-mul-neg-v1.wav"
+                            controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_022_130_SPK022/current/error/guo-mul-neg-v2.wav"
+                            controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_022_130_SPK022/current/error/guo-mul-neg-v3.wav"
+                            controls="" preload=""></audio></td>
+                </tr>
+
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        <h3>Sample 2</h3>
+        <h4>history</h4>
+        <p><audio src="samples/contexts/MDT_Conversation_035_031_SPK036/history/history.wav" controls="" preload=""></audio></p>
+        <p>SPK035: 嗯<br>SPK036: 那时候的爱情好像特别简单，就是我妈跟我说以前我爸怎么追他的呢<br>SPK035: 嗯<br>SPK036: 我爸就是就是，那时候他们不是不是在北京打工嘛，然后在打工的时候就是他们住一个小阁楼上<br>SPK035: 嗯<br>SPK036: 就那个阁楼上当时就是，冬天的时候会没有热水，然后就是只有凉水嘛，如果要是<br>SPK035: 嗯<br>SPK036: 接水的话需要从那个楼上跑下来，然后大概十几楼的样子<br>SPK036: 然后我爸就从楼梯上一一一楼一楼的然后就爬下来，为了给我妈接点热水，因为<br>SPK035: 嗯<br><b>SPK036: 要到楼下去接热水，那时候就是条件儿不是很好嘛，毕竟也是二十多年前那时候他们搞对象的时候</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>Context</strong></th>
+                    <th style="text-align: center"><strong>GRU-based</strong></th>
+                    <th style="text-align: center"><strong>M2CTTS</strong></th>
+                    <th style="text-align: center"><strong>S1</strong></th>
+                    <th style="text-align: center"><strong>S2</strong></th>
+                    <th style="text-align: center"><strong>S3</strong></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                        <td>Real</td>
+                    <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_035_031_SPK036/current/correct/guo.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_035_031_SPK036/current/correct/m2ctts.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_035_031_SPK036/current/correct/guo-mul-neg-v1.wav"
+                            controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_035_031_SPK036/current/correct/guo-mul-neg-v2.wav"
+                            controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_035_031_SPK036/current/correct/guo-mul-neg-v3.wav"
+                            controls="" preload=""></audio></td>
+                </tr>
+                
+
+                <tr>
+                        <td>Fake</td>
+                    <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_035_031_SPK036/current/error/guo.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_035_031_SPK036/current/error/m2ctts.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_035_031_SPK036/current/error/guo-mul-neg-v1.wav"
+                            controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_035_031_SPK036/current/error/guo-mul-neg-v2.wav"
+                            controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_035_031_SPK036/current/error/guo-mul-neg-v3.wav"
+                            controls="" preload=""></audio></td>
+                </tr>
+
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+
+        <h3>Sample 3</h3>
+        <h4>history</h4>
+        <p><audio src="samples/contexts/MDT_Conversation_049_210_SPK049/history/history.wav" controls="" preload=""></audio></p>
+        <p>SPK049: 这么神奇<br>SPK050: 对<br>SPK049: 我靠你这你其实你说这个，我想起来一个就是，另外一个我弟弟小时候的事情<br>SPK050: 嗯<br>SPK049: 我弟弟很小因为我弟弟，我比我弟弟大蛮多的嘛，然后他小时候事情我基本上都记得<br>SPK049: 有一天晚上我爸就是，因为冬天黑的特别早嘛，然后他自己在外面打牌<br>SPK050: 嗯<br>SPK049: 回来的又特别晚，当时都十点多了，他才回来，平常都九点过一点儿就回来嘛<br>SPK049: 那天晚上他回来特别晚，农村的十点多已经特别特别黑了，而且我们那儿当时没有路灯特别黑<br>SPK050: 嗯<br><b>SPK049: 然后他回来之后，然后从他一开始回来，我弟弟就开始哭，一直哭到十二点多，真的我们都没有任何办法了</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>Context</strong></th>
+                    <th style="text-align: center"><strong>GRU-based</strong></th>
+                    <th style="text-align: center"><strong>M2CTTS</strong></th>
+                    <th style="text-align: center"><strong>S1</strong></th>
+                    <th style="text-align: center"><strong>S2</strong></th>
+                    <th style="text-align: center"><strong>S3</strong></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                        <td>Real</td>
+                    <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_049_210_SPK049/current/correct/guo.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_049_210_SPK049/current/correct/m2ctts.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_049_210_SPK049/current/correct/guo-mul-neg-v1.wav"
+                            controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_049_210_SPK049/current/correct/guo-mul-neg-v2.wav"
+                            controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_049_210_SPK049/current/correct/guo-mul-neg-v3.wav"
+                            controls="" preload=""></audio></td>
+                </tr>
+                
+
+                <tr>
+                        <td>Fake</td>
+                    <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_049_210_SPK049/current/error/guo.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_049_210_SPK049/current/error/m2ctts.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_049_210_SPK049/current/error/guo-mul-neg-v1.wav"
+                            controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_049_210_SPK049/current/error/guo-mul-neg-v2.wav"
+                            controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_049_210_SPK049/current/error/guo-mul-neg-v3.wav"
+                            controls="" preload=""></audio></td>
+                </tr>
+
+            </tbody>
+        </table>
+        <br>
+        <br>
+<h3>Sample 4</h3>
+        <h4>history</h4>
+        <p><audio src="samples/contexts/MDT_Conversation_035_007_SPK036/history/history.wav" controls="" preload=""></audio></p>
+        <p>SPK035: 今天我们的话题是亲情<br>SPK036: 嗯最近你爸妈来找你了是吧<br>SPK035: 嗯对呀他<br>SPK036: 那平时他们给你做饭吗<br>SPK035: 对呀<br>SPK035: 每天晚上回家的时候都会，他们都会做好饭然后等我回来<br>SPK036: 就是之前的时候其实我爸妈也经常来找我嘛，然后他每次来找我的时候，他总是那个<br><b>SPK036: 就是我爸妈每次来找我的时候，他每次都是晚上的时候给我做好饭，但是呢他每次做完饭之后都要锻炼我一个能力，他说</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>Context</strong></th>
+                    <th style="text-align: center"><strong>GRU-based</strong></th>
+                    <th style="text-align: center"><strong>M2CTTS</strong></th>
+                    <th style="text-align: center"><strong>S1</strong></th>
+                    <th style="text-align: center"><strong>S2</strong></th>
+                    <th style="text-align: center"><strong>S3</strong></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                        <td>Real</td>
+                    <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_035_007_SPK036/current/correct/guo.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_035_007_SPK036/current/correct/m2ctts.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_035_007_SPK036/current/correct/guo-mul-neg-v1.wav"
+                            controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_035_007_SPK036/current/correct/guo-mul-neg-v2.wav"
+                            controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_035_007_SPK036/current/correct/guo-mul-neg-v3.wav"
+                            controls="" preload=""></audio></td>
+                </tr>
+                
+
+                <tr>
+                        <td>Fake</td>
+                    <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_035_007_SPK036/current/error/guo.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_035_007_SPK036/current/error/m2ctts.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_035_007_SPK036/current/error/guo-mul-neg-v1.wav"
+                            controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_035_007_SPK036/current/error/guo-mul-neg-v2.wav"
+                            controls="" preload=""></audio></td>
+                        <td style="text-align: left"><audio src="samples/contexts/MDT_Conversation_035_007_SPK036/current/error/guo-mul-neg-v3.wav"
+                            controls="" preload=""></audio></td>
+                </tr>
+
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+
+
+      <footer class="site-footer">
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com/">GitHub Pages</a>.</span>
+      </footer>
+    </section>
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>

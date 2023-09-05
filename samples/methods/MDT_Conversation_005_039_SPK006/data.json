@@ -1,0 +1,47 @@
+{
+    "current": {
+        "id": "MDT_Conversation_005_039_SPK006",
+        "text": "晚然后晚上回来了，回来之后都崩溃了，它们把屋子里所有，它们能动的东西全部都推到了地上",
+        "speaker": "SPK006",
+        "turn": 39
+    },
+    "history": {
+        "id": [
+            "MDT_Conversation_005_029_SPK005",
+            "MDT_Conversation_005_030_SPK006",
+            "MDT_Conversation_005_031_SPK006",
+            "MDT_Conversation_005_032_SPK005",
+            "MDT_Conversation_005_033_SPK006",
+            "MDT_Conversation_005_034_SPK006",
+            "MDT_Conversation_005_035_SPK005",
+            "MDT_Conversation_005_036_SPK006",
+            "MDT_Conversation_005_037_SPK006",
+            "MDT_Conversation_005_038_SPK006"
+        ],
+        "text": [
+            "嗯",
+            "然后然后就没有办法，然后就把它们那两只猫拎出去宠物店洗了",
+            "然后听说还挠到了人家洗澡的人",
+            "嗯",
+            "很凶",
+            "然后就一直这样，持续了有三四天吧！白天趴在床底下，晚上关了灯以后就开始出来跳",
+            "嗯",
+            "我真的超级无语那两只猫",
+            "然后后来那两只猫",
+            "哦有一天我们出去玩"
+        ],
+        "speaker": [
+            "SPK005",
+            "SPK006",
+            "SPK006",
+            "SPK005",
+            "SPK006",
+            "SPK006",
+            "SPK005",
+            "SPK006",
+            "SPK006",
+            "SPK006"
+        ],
+        "history_len": 10
+    }
+}

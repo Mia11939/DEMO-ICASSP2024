@@ -1,0 +1,38 @@
+{
+    "current": {
+        "id": "MDT_Conversation_035_007_SPK036",
+        "text": "就是我爸妈每次来找我的时候，他每次都是晚上的时候给我做好饭，但是呢他每次做完饭之后都要锻炼我一个能力，他说",
+        "speaker": "SPK036",
+        "turn": 7
+    },
+    "history": {
+        "id": [
+            "MDT_Conversation_035_000_SPK035",
+            "MDT_Conversation_035_001_SPK036",
+            "MDT_Conversation_035_002_SPK035",
+            "MDT_Conversation_035_003_SPK036",
+            "MDT_Conversation_035_004_SPK035",
+            "MDT_Conversation_035_005_SPK035",
+            "MDT_Conversation_035_006_SPK036"
+        ],
+        "text": [
+            "今天我们的话题是亲情",
+            "嗯最近你爸妈来找你了是吧",
+            "嗯对呀他",
+            "那平时他们给你做饭吗",
+            "对呀",
+            "每天晚上回家的时候都会，他们都会做好饭然后等我回来",
+            "就是之前的时候其实我爸妈也经常来找我嘛，然后他每次来找我的时候，他总是那个"
+        ],
+        "speaker": [
+            "SPK035",
+            "SPK036",
+            "SPK035",
+            "SPK036",
+            "SPK035",
+            "SPK035",
+            "SPK036"
+        ],
+        "history_len": 7
+    }
+}
